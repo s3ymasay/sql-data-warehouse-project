@@ -75,7 +75,7 @@ BEGIN
 			TABLOCK
 		);
 		SET @end_time = GETDATE();
-		PRINT 'Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
+		PRINT ' Load Duration: ' + CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '';
 
 		PRINT '';
@@ -135,10 +135,11 @@ BEGIN
 	END TRY
 	BEGIN CATCH
 		PRINT '=========================================='
-		PRINT 'ERROR OCCURED DURING LOADING BRONZE LAYER'
-		PRINT 'Error Message: ' + ERROR_MESSAGE();
-		PRINT 'Error Message: ' + CAST (ERROR_NUMBER() AS NVARCHAR);
-		PRINT 'Error Message: ' + CAST (ERROR_STATE() AS NVARCHAR);
+        PRINT 'ERROR OCCURRED DURING LOADING BRONZE LAYER'
+        PRINT 'Error Message: ' + ERROR_MESSAGE();
+        PRINT 'Error Number: ' + CAST(ERROR_NUMBER() AS NVARCHAR);
+        PRINT 'Error State: ' + CAST(ERROR_STATE() AS NVARCHAR);
 		PRINT '=========================================='
 	END CATCH
 END
+GO
