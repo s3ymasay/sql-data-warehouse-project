@@ -22,6 +22,7 @@ GO
 
 CREATE OR ALTER PROCEDURE bronze.load_bronze AS
 BEGIN
+	 SET NOCOUNT ON;
 	DECLARE @start_time DATETIME, @end_time DATETIME, @batch_start_time DATETIME, @batch_end_time DATETIME; 
 	BEGIN TRY
 		SET @batch_start_time = GETDATE();
