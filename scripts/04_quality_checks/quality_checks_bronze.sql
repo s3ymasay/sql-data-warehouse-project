@@ -70,8 +70,8 @@ WHERE prd_cost <= 0;
 -- Checking 'bronze.crm_sales_details'
 -- =============================================================================
 
--- Check for Invalid Date Formats (INT dates)
--- Expectation: Dates should be 8 digits (YYYYMMDD format)
+-- Check for Invalid Date Formats (INT dates should be YYYYMMDD)
+-- Expectation: All dates should be 8 digits in valid range
 SELECT 
     sls_ord_num,
     sls_order_dt,
@@ -82,7 +82,11 @@ WHERE LEN(sls_order_dt) != 8
    OR LEN(sls_ship_dt) != 8 
    OR LEN(sls_due_dt) != 8
    OR sls_order_dt < 19000101 
-   OR sls_order_dt > 20500101;
+   OR sls_order_dt > 20500101
+   OR sls_ship_dt < 19000101 
+   OR sls_ship_dt > 20500101
+   OR sls_due_dt < 19000101 
+   OR sls_due_dt > 20500101;
 
 -- Check for NULL or Zero Values in Sales Metrics
 -- Expectation: No Results
