@@ -9,8 +9,27 @@ Script Purpose:
     - Uses the `BULK INSERT` command to load data from csv Files to bronze tables.
 
 Parameters:
-    None. 
-	  This stored procedure does not accept any parameters or return any values.
+    None. This stored procedure does not accept parameters.
+    Path configuration is done via Find & Replace (see IMPORTANT section below).
+
+IMPORTANT - Path Configuration:
+    The data files are expected to be in: C:\DataWarehouse\datasets\
+    
+    If your files are in a different location, update the file paths below
+    using Find & Replace:
+        Find:    'C:\DataWarehouse\datasets\'
+        Replace: 'YOUR_PATH_HERE\'
+    
+    Expected folder structure:
+        C:\DataWarehouse\datasets\
+        ├── source_crm\
+        │   ├── cust_info.csv
+        │   ├── prd_info.csv
+        │   └── sales_details.csv
+        └── source_erp\
+            ├── CUST_AZ12.csv
+            ├── LOC_A101.csv
+            └── PX_CAT_G1V2.csv
 
 Usage Example:
     EXEC bronze.load_bronze;
@@ -38,7 +57,7 @@ BEGIN
 		TRUNCATE TABLE bronze.crm_cust_info;
 		PRINT ' Inserting Data Into: bronze.crm_cust_info';
 		BULK INSERT bronze.crm_cust_info
-		FROM 'C:\Users\cirrus mammatus\Desktop\SQL\sql-data-warehouse-project\datasets\source_crm\cust_info.csv'
+		FROM 'C:\DataWarehouse\datasets\source_crm\cust_info.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -54,7 +73,7 @@ BEGIN
 
 		PRINT ' Inserting Data Into: bronze.crm_prd_info';
 		BULK INSERT bronze.crm_prd_info
-		FROM 'C:\Users\cirrus mammatus\Desktop\SQL\sql-data-warehouse-project\datasets\source_crm\prd_info.csv'
+		FROM 'C:\DataWarehouse\datasets\source_crm\prd_info.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -69,7 +88,7 @@ BEGIN
 		TRUNCATE TABLE bronze.crm_sales_details;
 		PRINT ' Inserting Data Into: bronze.crm_sales_details';
 		BULK INSERT bronze.crm_sales_details
-		FROM 'C:\Users\cirrus mammatus\Desktop\SQL\sql-data-warehouse-project\datasets\source_crm\sales_details.csv'
+		FROM 'C:\DataWarehouse\datasets\source_crm\sales_details.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -88,7 +107,7 @@ BEGIN
 		TRUNCATE TABLE bronze.erp_loc_a101;
 		PRINT ' Inserting Data Into: bronze.erp_loc_a101';
 		BULK INSERT bronze.erp_loc_a101
-		FROM 'C:\Users\cirrus mammatus\Desktop\SQL\sql-data-warehouse-project\datasets\source_erp\LOC_A101.csv'
+		FROM 'C:\DataWarehouse\datasets\source_erp\LOC_A101.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -103,7 +122,7 @@ BEGIN
 		TRUNCATE TABLE bronze.erp_cust_az12;
 		PRINT ' Inserting Data Into: bronze.erp_cust_az12';
 		BULK INSERT bronze.erp_cust_az12
-		FROM 'C:\Users\cirrus mammatus\Desktop\SQL\sql-data-warehouse-project\datasets\source_erp\CUST_AZ12.csv'
+		FROM 'C:\DataWarehouse\datasets\source_erp\CUST_AZ12.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
@@ -118,7 +137,7 @@ BEGIN
 		TRUNCATE TABLE bronze.erp_px_cat_g1v2;
 		PRINT ' Inserting Data Into: bronze.erp_px_cat_g1v2';
 		BULK INSERT bronze.erp_px_cat_g1v2
-		FROM 'C:\Users\cirrus mammatus\Desktop\SQL\sql-data-warehouse-project\datasets\source_erp\PX_CAT_G1V2.csv'
+		FROM 'C:\DataWarehouse\datasets\source_erp\PX_CAT_G1V2.csv'
 		WITH (
 			FIRSTROW = 2,
 			FIELDTERMINATOR = ',',
