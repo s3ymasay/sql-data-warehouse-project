@@ -19,9 +19,9 @@ Usage Notes:
 USE DataWarehouse;
 GO
 
--- =============================================================================
+-- =====================================================================
 -- Date Transformation Validation
--- =============================================================================
+-- =====================================================================
 
 PRINT '=== Date Transformation Validation ===';
 PRINT '';
@@ -45,9 +45,9 @@ WHERE sls_order_dt IS NULL
    OR sls_ship_dt IS NULL 
    OR sls_due_dt IS NULL;
 
--- =============================================================================
+-- =====================================================================
 -- Sales Calculation Validation
--- =============================================================================
+-- =====================================================================
 
 PRINT '';
 PRINT '=== Sales Calculation Validation ===';
@@ -71,9 +71,9 @@ WHERE sls_sales != sls_quantity * sls_price
    OR sls_sales IS NULL 
    OR sls_sales <= 0;
 
--- =============================================================================
+-- =====================================================================
 -- Data Standardization Validation
--- =============================================================================
+-- =====================================================================
 
 PRINT '';
 PRINT '=== Data Standardization Validation ===';
@@ -91,9 +91,9 @@ SELECT
     COUNT(DISTINCT cst_gndr) AS value_count
 FROM silver.crm_cust_info;
 
--- =============================================================================
+-- =====================================================================
 -- Duplicate Handling Validation
--- =============================================================================
+-- =====================================================================
 
 PRINT '';
 PRINT '=== Duplicate Handling Validation ===';
@@ -121,9 +121,9 @@ FROM (
     HAVING COUNT(*) > 1
 ) duplicates;
 
--- =============================================================================
+-- =====================================================================
 -- Summary Report
--- =============================================================================
+-- =====================================================================
 
 PRINT '';
 PRINT '=== Transformation Summary ===';
@@ -154,14 +154,3 @@ FROM silver.crm_sales_details
 WHERE sls_order_dt IS NULL 
    OR sls_sales IS NULL
    OR sls_sales != sls_quantity * sls_price;
-```
-
----
-
-## **✅ FİNAL KLASÖR YAPISI:**
-```
-scripts/04_quality_checks/
-├── quality_checks_bronze.sql         ✅ YENİ - Source data quality
-├── quality_checks_silver.sql         ✅ GÜNCELLEME - Transformed data quality
-├── quality_checks_gold.sql           ✅ VAR - Business logic quality
-└── transformation_validation.sql     ✅ YENİ - Before/After ETL validation
