@@ -71,16 +71,16 @@ WHERE prd_cost <= 0;
 -- =====================================================================
 
 -- Check for Invalid Date Formats (INT dates should be YYYYMMDD)
--- Expectation: All dates should be 8 digits in valid range
+-- Expectation: All dates should be valid YYYYMMDD integers in valid range
 SELECT 
     sls_ord_num,
     sls_order_dt,
     sls_ship_dt,
     sls_due_dt
 FROM bronze.crm_sales_details
-WHERE LEN(sls_order_dt) != 8 
-   OR LEN(sls_ship_dt) != 8 
-   OR LEN(sls_due_dt) != 8
+WHERE sls_order_dt IS NULL OR sls_order_dt = 0
+   OR sls_ship_dt IS NULL OR sls_ship_dt = 0
+   OR sls_due_dt IS NULL OR sls_due_dt = 0
    OR sls_order_dt < 19000101 
    OR sls_order_dt > 20500101
    OR sls_ship_dt < 19000101 
