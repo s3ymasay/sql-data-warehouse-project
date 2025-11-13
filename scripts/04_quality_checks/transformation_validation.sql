@@ -31,8 +31,7 @@ SELECT
     'Bronze: Invalid date formats' AS check_type,
     COUNT(*) AS issue_count
 FROM bronze.crm_sales_details
-WHERE sls_order_dt <= 0 
-   OR LEN(sls_order_dt) != 8 
+WHERE sls_order_dt IS NULL OR sls_order_dt = 0
    OR sls_order_dt > 20500101 
    OR sls_order_dt < 19000101;
 
