@@ -46,7 +46,8 @@ sql-data-warehouse-project/
 ├── docs/                               # Documentation and diagrams
 │   ├── data_architecture.png          # Medallion layers diagram
 │   ├── star_schema.png                # Star schema diagram
-│   └── data_flow.png                  # Data flow diagram
+│   ├── data_flow.png                  # Data flow diagram
+│   └── data_catalog.md                # Column descriptions and metadata
 │
 └── scripts/                            # SQL scripts
     ├── 00_init/                       # Database initialization
